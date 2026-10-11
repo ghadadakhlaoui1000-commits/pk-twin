@@ -1,0 +1,26 @@
+💊 J'ai construit le jumeau numérique d'un médicament… et il répond en quelques millisecondes.
+
+En pharmacocinétique, simuler la concentration d'un médicament dans le sang est précis mais lent (≈ 0,7 à 1,5 seconde par patient sur mon ordinateur). Impossible d'explorer des milliers de cas en direct.
+Alors j'ai créé PK-Twin : peut-on aller beaucoup plus vite, et savoir quand le modèle doute ?
+
+Ce que fait le projet
+• 6 paramètres en entrée : dose, absorption, clairance, volumes, échange sang-tissus
+• En sortie : courbe de concentration, Cmax, Tmax, AUC
+• Modèle à 2 compartiments (EDO), validé contre la solution analytique de Bateman
+• Modèle rapide : PCA + ensemble de 5 réseaux de neurones, entraîné sur 600 patients virtuels (hypercube latin)
+
+⚡ Résultats sur des patients jamais vus
+• Erreur médiane de 1,2 % sur les courbes, 0,8 % sur le Cmax, 1,1 % sur l'AUC
+• ×100 à ×250 plus rapide dans le dashboard (un patient à la fois), jusqu'à ×1 700 en calcul groupé
+• Incertitude ±2σ qui couvre 97 % des points réels
+• Alerte automatique : sous-dosage, zone d'incertitude, risque de toxicité
+• Analyse de sensibilité : la dose et la clairance dominent l'exposition, comme le prévoit la théorie (AUC ≈ dose / clairance)
+
+Ce que j'en retiens : un bon modèle de substitution ne remplace pas la physique, il la rend utilisable, et il doit dire quand il doute.
+
+⚠️ Modèle pédagogique, non calibré sur données patient et non validé cliniquement. Prochaines étapes : doses répétées, variabilité de population, calibration sur données réelles.
+
+Code : [lien GitHub]
+Vos retours m'intéressent, surtout si vous travaillez en pharmacométrie ou sur les jumeaux numériques.
+
+#GénieBiomédical #JumeauNumérique #Pharmacocinétique #MachineLearning #Python #Streamlit #Healthtech
